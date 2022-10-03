@@ -1,0 +1,30 @@
+.modalCampos{
+    background-color: #D3D3D3;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 3%;
+    margin-right: 3%;
+
+    border-left: 15px solid green;;
+    height: 15%;
+    width: 25%;
+    padding-right: 40px;
+
+    display: flex;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    font-family: 'Inter', sans-serif;
+    color: green;
+    font-weight: 700;
+    font-size: 16px
+
+}
+
+.imagem-error{
+    width: 50px;
+    margin-right: 20px;
+    margin-left: 20px;
+}

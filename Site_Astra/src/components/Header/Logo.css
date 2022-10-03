@@ -1,0 +1,10 @@
+.box-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-image{
+    width: 250px;
+    margin-top: 10px;
+}

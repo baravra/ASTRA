@@ -1,0 +1,11 @@
+
+.box-esqueci-senha{
+    width: 100%;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background-image: url('./mar.jpg');
+    background-color: red;
+    opacity: 0.9;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
