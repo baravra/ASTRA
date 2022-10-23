@@ -5,8 +5,7 @@ import MedicoLogin from "../components/Main-Box-Login-Medico/Main-Box-Login-Medi
 
 export default function LoginMedico () {
     return(
-    <div className="box-login"> 
-        {/* <ImagemLogo /> */}
+    <div className="box-login-medico"> 
         <MedicoLogin />
     </div>
     )

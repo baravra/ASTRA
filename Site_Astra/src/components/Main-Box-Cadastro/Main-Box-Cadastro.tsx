@@ -37,40 +37,43 @@ export default function CadastrarCliente() {
 
     return (
         <div className="box-main-cadastro">
-            <div className="info">
-                <h1 className='title1'> Seja bem vindo a nossa página de Cadastro! </h1>
-                <h1 className='title2'>Lembrando que para a realização do Cadastro será necessário a liberação do cadastro com seu médico! </h1>
-            </div>
-            <div className="login">
-                <h1 className='singin'> Cadastrar </h1>
-
+            <div className="login-box">
+                <div className="box-image">
+                    <img src="./logo.png" alt="Logo" className="logo" />
+                </div>
+                <h1 className='singin-text'> Cadastrar</h1>
                 <form onSubmit={cadastrarCliente} >
-                    <div className='box-dados'>
+                    <div className='dados-box-cadastro'>
                         <User size={32} className='icone' />
-                        <input type="text" name="user" id="user" className='user' placeholder='Usuário ou CPF ' />
+                        <input type="text" name="user" id="user" className='input' placeholder='Usuário ou CPF ' />
                     </div>
 
-                    <div className='box-dados top'>
+                    <div className='dados-box-cadastro'>
                         <Key size={32} className='icone' />
-                        <input type="password" name="codigo" id="codigo" className='user' placeholder='Código' />
+                        <input type="password" name="codigo" id="codigo" className='input' placeholder='Código' />
                     </div>
 
-                    <div className='box-dados top'>
+                    <div className='dados-box-cadastro'>
                         <LockKey size={32} className='icone' />
-                        <input type="password" name="senhanova" id="senhanova" className='user' placeholder='Senha' />
+                        <input type="password" name="senhanova" id="senhanova" className='input' placeholder='Senha' />
                     </div>
-                    <div className='box-dados top'>
+                    <div className='dados-box-cadastro'>
                         <LockKey size={32} className='icone' />
-                        <input type="password" name="confirmsenha" id="confirmsenha" className='user' placeholder='Confirmação da Senha' />
+                        <input type="password" name="confirmsenha" id="confirmsenha" className='input' placeholder='Confirmação da Senha' />
                     </div>
 
-                    <div className="buton">
+                    <div className="box-button">
                         {/* <Link to='/SistemaHome' className='acessar' id="acessar"> Criar Conta </Link> */}
-                        <button className='acessar' id="acessar"> Criar Conta </button>
+                        <button className='acessar-cadastro' id="acessar"> Criar Conta </button>
                     </div>
                 </form>
-              
+                
             </div>  
+            <div className="imagem">
+                
+            </div>
+            
+        
         </div>
     )
 }

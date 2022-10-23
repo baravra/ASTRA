@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Route } from "react-router";
 import { User, LockKey } from "phosphor-react";
 import './Main-box-Login-Medico.css'
 import axios from "axios";
@@ -25,6 +26,8 @@ export default function MedicoLogin() {
             console.log(response.data[0].id)
             alert('Login realizado com sucesso')
 
+            return <Link to='/Home-Medico'/>
+        
         } catch (error) {
             console.log(error)
             alert("Erro ao encontrar usuário!")
@@ -33,40 +36,38 @@ export default function MedicoLogin() {
 
     return (
         <div className="box-main">
-            <div className="info">
-                <h1 className='title1'> Seja bem vindo a nossa página de Login!</h1>
-                <h1 className='title2'> Para continuar com o login você precisa ter contratado nossos serviços para acessar usando um código de matrícula que somente nos disponibilizamos!</h1>
-            </div>
-            <div className="login">
-                <h1 className='singin'> Entrar</h1>
+            <div className="login-medico-box">
+                <div className="box-image">
+                    <img src="./logo.png" alt="Logo" className="logo" />
+                </div>
+                <h1 className='singin-text'> Entrar</h1>
                 <form onSubmit={loginMedico}>
-                    <div className='box-dados'>
+                    <div className='dados-box'>
                         <User size={32} className='icone' />
-                        <input type="text" name="user" id="user" className='user' placeholder='Usuário ou CPF ' />
+                        <input type="text" name="user" id="user" className='input' placeholder='Usuário ou CPF ' />
                     </div>
 
-                    <div className='box-dados top'>
+                    <div className='dados-box'>
                         <LockKey size={32} className='icone' />
-                        <input type="password" name="senha" id="senha" className='user' placeholder='Senha' />
+                        <input type="password" name="senha" id="senha" className='input' placeholder='Senha' />
                     </div>
 
-                    <div className="opcoes">
+                    <div className="opcoes-em-linha">
                         <div className="conectado-box">
                             <input type="checkbox" name="conectado" id="conectado" className='conectado' />
                             <h4 className='text-options'> Manter-me Conectado</h4>
                         </div>
                         <div className="esqueci">
-                        <Link to='/Esqueci-Senha' id="acessar" className='text-options' >  Esqueci minha senha </Link>
+                        <Link to='/Esqueci-Senha-Medico' id="acessarsenha" className='text-options' >  Esqueci minha senha </Link>
                         </div>
                     </div>
-                    <div className="buton">
+                    <div className="box-button">
                         {/* <Link to='/Inicio' className='acessar' id="acessar"> Acessar </Link> */}
-                        <button className='acessar' id="acessar"> Acessar </button>
+                        <button className='acessar' id="acessar">  <Link to='/Home-Medico' className="link-acessar"> Acessar </Link> </button>
                     </div>
                 </form>
                 
-              
-            </div>  
+            </div>   
         </div>
     )
 }
