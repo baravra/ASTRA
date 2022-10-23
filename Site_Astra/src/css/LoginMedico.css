@@ -1,0 +1,9 @@
+.box-login-medico{
+    width: 100%;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background-image: url('./foto-login-medico.png');
+    background-color: red;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

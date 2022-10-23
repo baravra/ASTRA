@@ -33,42 +33,44 @@ export default function MainBox() {
     }
     
     return (
-        <div className="box-main">
-            <div className="info">
-                <h1 className='title1'> Seja bem vindo a nossa página de Login!</h1>
-                <h1 className='title2'> Se você já tiver se cadastrado acesse com uma conta existente, se ainda não Cadastre-se!</h1>
-            </div>
-            <div className="login">
-                <h1 className='singin'> Entrar</h1>
+        <div className="main-box">
+            
+            <div className="login-box">
+                <div className="box-image">
+                    <img src="./logo.png" alt="Logo" className="logo" />
+                </div>
+                <h1 className='singin-text'> Entrar</h1>
                 <form onSubmit={loginCliente}>
-                    <div className='box-dados'>
+                    <div className='dados-box'>
                         <User size={32} className='icone' />
-                        <input type="text" name="user" id="user" className='user' placeholder='Usuário ou CPF ' />
+                        <input type="text" name="user" id="user" className='input' placeholder='Usuário ou CPF ' />
                     </div>
 
-                    <div className='box-dados top'>
+                    <div className='dados-box'>
                         <LockKey size={32} className='icone' />
-                        <input type="password" name="senha" id="senha" className='user' placeholder='Senha' />
+                        <input type="password" name="senha" id="senha" className='input' placeholder='Senha' />
                     </div>
 
-                    <div className="opcoes">
+                    <div className="opcoes-em-linha">
                         <div className="conectado-box">
                             <input type="checkbox" name="conectado" id="conectado" className='conectado' />
                             <h4 className='text-options'> Manter-me Conectado</h4>
                         </div>
                         <div className="esqueci">
-                        <Link to='/Esqueci-Senha' id="acessar" className='text-options' >  Esqueci minha senha </Link>
+                        <Link to='/Esqueci-Senha' id="acessar" className='text-options esqueci' >  Esqueci minha senha </Link>
                         </div>
                     </div>
-                    <div className="buton">
+                    <div className="box-button">
                         {/* <Link to='/Inicio' className='acessar' id="acessar"> Acessar </Link> */}
-                        <button className='acessar' id="acessar"> Acessar </button>
+                        <button className='entrar' id="acessar"> Acessar </button>
                         <div className="criar"> Não possui conta? <Link to='/Cadastrar' id="acessar" className='text-options' > <span> Cadastre-se.</span></Link></div>
                     </div>
                 </form>
                 
-              
             </div>  
+            <div className="imagem-login">
+                
+            </div>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { User, LockKey } from "phosphor-react";
+import { User, LockKey, Key } from "phosphor-react";
 import './Main-box-Senha.css'
 import { FormEvent } from "react";
 import axios from "axios";
@@ -9,30 +9,30 @@ import Sucesso from "../Modal-Sucesso-Senha/Modal-Senha";
 
 export default function EsqueciSenha() {
 
-    async function esqueciSenha(event: FormEvent){
+    async function esqueciSenha(event: FormEvent) {
 
         event.preventDefault()
         const formData = new FormData(event.target as HTMLFormElement)
         const data = Object.fromEntries(formData)
 
-        if(!data.user || !data.senhanova || !data.confirmsenha){
+        if (!data.user || !data.senhanova || !data.confirmsenha) {
             alert('Preencha todos os campos')
             return
         }
 
-        if(data.senhanova !== data.confirmsenha){
+        if (data.senhanova !== data.confirmsenha) {
             alert('Senhas não conferem')
             return
         }
 
         try {
-            await axios.patch(`http://localhost:44/atualizar` , {
+            await axios.patch(`http://localhost:44/atualizar`, {
                 "name": data.user,
                 "password": data.senhanova
             })
 
             alert('Senha alterada com sucesso')
-            
+
         } catch (error) {
             console.log(error)
             alert("Erro ao encontrar usuário!")
@@ -41,34 +41,39 @@ export default function EsqueciSenha() {
 
     return (
         <div className="box-main-senha">
-            <div className="info">
-                <h1 className='title1'> Recuperação de senha </h1>
-                <h1 className='title2'> Lembrando que assim que haver a mudança você perderá a conexão com sua conta, retornará após acessar sua conta com a nova senha!</h1>
-            </div>
-            <div className="login">
-                <h1 className='singin'> Redefinir Senha </h1>
+            <div className="login-box">
+                <div className="box-image">
+                    <img src="./logo.png" alt="Logo" className="logo" />
+                </div>
+                <h1 className='singin-text-senha'> Redefinir Senha </h1>
                 <form onSubmit={esqueciSenha}>
-                    <div className='box-dados'>
+                    <div className='dados-box-senha'>
                         <User size={32} className='icone' />
-                        <input type="text" name="user" id="user" className='user' placeholder='Usuário ou CPF ' />
+                        <input type="text" name="user" id="user" className='input' placeholder='Usuário ou CPF ' />
+                    </div>
+                    <div className='dados-box-senha'>
+                    <Key size={32} className='icone' />
+                        <input type="password" name="codigo" id="codigo" className='input' placeholder='Código' />
+                    </div>
+                    <div className='dados-box-senha'>
+                        <LockKey size={32} className='icone' />
+                        <input type="password" name="senhanova" id="senhanova" className='input' placeholder='Senha Nova' />
+                    </div>
+                    <div className='dados-box-senha'>
+                        <LockKey size={32} className='icone' />
+                        <input type="password" name="confirmsenha" id="confirmsenha" className='input' placeholder='Confirmação da Senha Nova' />
                     </div>
 
-                    <div className='box-dados top'>
-                        <LockKey size={32} className='icone' />
-                        <input type="password" name="senhanova" id="senhanova" className='user' placeholder='Senha Nova' />
-                    </div>
-                    <div className='box-dados top'>
-                        <LockKey size={32} className='icone' />
-                        <input type="password" name="confirmsenha" id="confirmsenha" className='user' placeholder='Confirmação da Senha Nova' />
-                    </div>
-
-                    <div className="buton">
+                    <div className="box-button">
                         {/* <Link to='/Inicio' className='acessar' id="acessar"> Acessar </Link> */}
-                        <button className='acessar' id="acessar"> Acessar </button>
+                        <button className='acessar-senha' id="acessar"> Alterar Senha </button>
                     </div>
                 </form>
-              
-            </div>  
+
+            </div>
+            <div className="imagem-senha">
+
+            </div>
         </div>
     )
 }

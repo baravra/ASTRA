@@ -1,0 +1,95 @@
+.box-main-agenda{
+    margin-left: 10%;
+    margin-top: 60px;
+}
+
+.welcome{
+    font-weight: 400;
+    color: #061E2A;
+    font-size: 25px;
+    margin-top: 40px;
+    font-family: 'Inter', sans-serif; 
+}
+
+.agenda{
+    font-weight: 600;
+    color: #004B70;
+    font-size: 30px;
+    font-family: 'Inter', sans-serif;
+    margin-top: auto;
+    margin-bottom: auto;
+}  
+
+.cabecalho{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 90%;
+    margin-top: 60px;
+}
+
+
+.esquerda{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 7%;
+    margin-right: 60px
+}
+
+.direita{
+    width: 15%;
+
+}
+
+.iniciar{
+    background-color: #004B70;
+    text-align: center;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    color: white !important;
+    cursor: pointer;
+}
+
+.link{
+    color: white !important;
+    text-decoration: none;
+}
+
+.link:hover{
+    text-decoration: none;
+}
+
+.status{
+    background-color: #004B70;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table{
+    width: 90%;
+    margin-top: 20px;
+}
+
+.circulo{
+    background-color: #B1E8EC;
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.iniciar:hover{
+    background-color: #3484AC;
+
+}

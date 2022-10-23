@@ -5,7 +5,7 @@ import CadastrarCliente from "../components/Main-Box-Cadastro/Main-Box-Cadastro"
 
 export default function Cadastrar () {
     return(
-    <div className="box-esqueci-senha"> 
+    <div className="box-cadastrar"> 
       <CadastrarCliente />
     </div>
     )
