@@ -18,7 +18,7 @@ export default function MainBox() {
         }
 
         try {
-            const response = await axios.post(`http://localhost:44/login`, {
+            const response = await axios.post(`http://localhost:44/loginPaciente`, {
                 "usuario": data.user,
                 "senha": data.senha
             })

@@ -10,22 +10,82 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Usuario {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  //infos Infos[]
+model Medico {
+  id            Int            @id @default(autoincrement())
+  name          String         @unique
+  password      String
+  createdAt     DateTime       @default(now())
+  codigo        Clinica        @relation(fields: [codigoClinica], references: [id])
+  codigoClinica Int
+  Paciente      Paciente[]
+  Agendamentos  Agendamentos[]
 }
 
-// model Infos {
-//   id        Int      @id @default(autoincrement())
-//   email     String   @unique
-//   name      String
-//   cpf       String   @unique
-//   password  String
-//   createdAt DateTime @default(now())
-//   usuario   Usuario @relation(fields: [usuarioId], references: [id])
-//   usuarioId Int
-// }
-// rodar denovo npx prisma migrate dev
+model Paciente {
+  id           Int            @id @default(autoincrement())
+  name         String         @unique
+  password     String
+  createdAt    DateTime       @default(now())
+  medico       Medico         @relation(fields: [medicoId], references: [id])
+  medicoId     Int
+  Agendamentos Agendamentos[]
+  Prontuario   Prontuario[]
+
+  @@unique([id, name])
+}
+
+model Clinica {
+  id         Int          @id @default(autoincrement())
+  name       String       @unique
+  createdAt  DateTime     @default(now())
+  Medico     Medico[]
+  Secretaria Secretaria[]
+}
+
+model Secretaria {
+  id           Int            @id @default(autoincrement())
+  name         String         @unique
+  password     String
+  createdAt    DateTime       @default(now())
+  clinica      Clinica        @relation(fields: [clinicaId], references: [id])
+  clinicaId    Int
+  Agendamentos Agendamentos[]
+}
+
+model Agendamentos {
+  id             Int        @id @default(autoincrement())
+  secretaria     Secretaria @relation(fields: [secretariaName], references: [name])
+  secretariaName String
+  medico         Medico     @relation(fields: [medicoName], references: [name])
+  medicoName     String
+  paciente       Paciente   @relation(fields: [pacienteId, pacienteName], references: [id, name])
+  pacienteId     Int
+  pacienteName   String
+  horario        DateTime   @default(now())
+  convenio       String
+  status         String
+}
+
+model Prontuario {
+  id                 String   @id @default(uuid())
+  paciente           Paciente @relation(fields: [pacienteName], references: [name])
+  pacienteName       String
+  createdAt          DateTime @default(now())
+  nascimento         DateTime
+  telefone           String
+  telefone2          String
+  telefoneEmergencia String
+  email              String
+  sexo               String
+  escolaridade       String
+  ocupacao           String
+  limitacao          String
+  alergia            String
+  alcool             String
+  ativo              String
+  idade              Int
+  convenio           String
+}
+
+// Property 'prontuario' does not exist on type 'PrismaClient<PrismaClientOptions, never, RejectOnNotFound | RejectPerOperation | undefined>'. => npx prisma generate
+// rodar denovo npx prisma migrate dev sempre que adicionar ou alterar esse arquivo
