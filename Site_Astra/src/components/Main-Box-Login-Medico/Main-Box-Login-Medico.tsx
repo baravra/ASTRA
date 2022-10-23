@@ -18,15 +18,17 @@ export default function MedicoLogin() {
         }
 
         try {
-            const response = await axios.post(`http://localhost:44/login`, {
+            const response = await axios.post(`http://localhost:44/loginMedico`, {
                 "usuario": data.user,
                 "senha": data.senha
             })
 
             console.log(response.data[0].id)
-            alert('Login realizado com sucesso')
 
-            return <Link to='/Home-Medico'/>
+           localStorage.setItem('medico', (data.user).toString())
+
+            const win: Window = window;
+            win.location = "/Home-Medico";
         
         } catch (error) {
             console.log(error)

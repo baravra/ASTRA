@@ -1,75 +1,52 @@
 import { Link } from "react-router-dom";
 import { Calendar, IdentificationCard, ChartLine, BellRinging, Chats, UserCircle, Funnel } from "phosphor-react";
 import './AgendaMedico.css'
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+interface Agenda{
+    secretariaName: string;
+    medicoName: string;
+    pacienteId: number;
+    pacienteName: string;
+    horario: Date;
+    convenio: string;
+    status: string;
+    id: number;
+}
 
 export default function AgendaMedico() {
-    var medico = "Fabrício Santos"
+    var medico = localStorage.getItem('medico')
+    const [agendas, setAgenda] = useState<Agenda[]>([])
+    useEffect(() => {
+        fetch(`http://localhost:44/agendamentos/${medico}`)
+            .then(response => response.json())
+            .then(data => setAgenda(data))
+    })    
 
-    var pacientes = [
-        {
-            id: '1',
-            agendou: "Carla Assis",
-            medico: "Thiago Freitas",
-            paciente: "Paulino Cândido Pinto",
-            data: "27/10/20220",
-            hora: "10:40",
-            convenio: "Particular",
-            status: "Finalizada",
-        },
-        {
-            id: "2",
-            agendou: "Carla Assis",
-            medico: "Thiago Freitas",
-            paciente: "Lara de Oliveira Santos",
-            data: "27/10/20220",
-            hora: "14:40",
-            convenio: "Particular",
-            status: "Confirmada",
-        },
-        {
-            id: "3",
-            agendou: "Mariana Alves",
-            medico: "Thiago Freitas",
-            paciente: "Camila Pedreira Montesquiel",
-            data: "27/10/20220",
-            hora: "15:40",
-            convenio: "Particular",
-            status: "Agendada",
-        },
-        {
-            id: "4",
-            agendou: "Luciene Pereira",
-            medico: "Thiago Freitas",
-            paciente: "Pedro Henquique da Silva",
-            data: "27/10/20220",
-            hora: "16:40",
-            convenio: "Particular",
-            status: "Confirmada",
-        },
-        {
-            id: "5",
-            agendou: "Luciene Pereira",
-            medico: "Thiago Freitas",
-            paciente: "Sofia Rocha Silva",
-            data: "27/10/20220",
-            hora: "17:40",
-            convenio: "Particular",
-            status: "Confirmada",
-        },
-        {
-            id: "6",
-            agendou: "Mariana Alves",
-            medico: "Thiago Freitas",
-            paciente: "Carlos Pinto Rocha",
-            data: "27/10/20220",
-            hora: "18:40",
-            convenio: "Particular",
-            status: "Confirmada",
+    function FormatDateToDatabase(data: Date){
+        // const dataFormatada = '' + data.getFullYear() + '-' + (data.getMonth() + 1) + '-' + data.getDate() + 'T' + data.getHours() + ':' + data.getMinutes() + ':' + data.getSeconds();
+        const dataFormatada = '' + data.getFullYear() + '-' + (data.getMonth() + 1) + '-' + data.getDate() + 'T00:00:00' ;
+        return dataFormatada;
+    }
+    function FormatDateToShow(data: Date){
+        var dataFormatada = new Date(data.toString())
+        dataFormatada = (dataFormatada.getDate() + '/' + (dataFormatada.getMonth() + 1) + '/' + dataFormatada.getFullYear() + ' ' + dataFormatada.getHours() + ':' + dataFormatada.getMinutes()).toString();
+        return dataFormatada
+    }
+    async function  handleIniciar(id: number, pacienteId: number,pacienteName: string){
+
+        try {
+            await axios.get(`http://localhost:44/iniciarAgendamento/${id}`, {})
+
+            localStorage.setItem("agendaId", id.toString())
+            localStorage.setItem("pacienteId", pacienteId.toString())
+            localStorage.setItem("pacienteName", pacienteName.toString())
+        
+        } catch (error) {
+            console.log(error)
+            alert("Erro ao atualizar status do agendamento!")
         }
-    ];
-
-    function InicarConsulta(id: string) {
-        alert("Iniciando Consulta" + id)
     }
 
     return (
@@ -100,62 +77,25 @@ export default function AgendaMedico() {
                             <th>Agendado por</th>
                             <th>Nome do Paciente</th>
                             <th>Data</th>
-                            <th>Hora</th>
                             <th>Convênio</th>
                             <th>Satatus da consulta</th>
                             <th className="direita"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>{pacientes[0].agendou}</td>
-                            <td>{pacientes[0].paciente}</td>
-                            <td>{pacientes[0].data}</td>
-                            <td>{pacientes[0].hora}</td>
-                            <td>{pacientes[0].convenio}</td>
-                            <td> {pacientes[0].status} </td>
-                            <td className="iniciar"> <Link to='/Paciente' className="link" >Iniciar Consulta</Link></td>
-                        </tr>
-                        <tr>
-                            <td>{pacientes[1].agendou}</td>
-                            <td>{pacientes[1].paciente}</td>
-                            <td>{pacientes[1].data}</td>
-                            <td>{pacientes[1].hora}</td>
-                            <td>{pacientes[1].convenio}</td>
-                            <td> {pacientes[1].status}</td>
-                            <td className="iniciar"> <Link to='/Paciente' className="link" >Iniciar Consulta</Link></td></tr>
-                        <tr>
-                            <td>{pacientes[2].agendou}</td>
-                            <td>{pacientes[2].paciente}</td>
-                            <td>{pacientes[2].data}</td>
-                            <td>{pacientes[2].hora}</td>
-                            <td>{pacientes[2].convenio}</td>
-                            <td>{pacientes[2].status}</td>
-                            <td className="iniciar"> <Link to='/Paciente' className="link" >Iniciar Consulta</Link></td></tr>
-                        <tr>
-                            <td>{pacientes[3].agendou}</td>
-                            <td>{pacientes[3].paciente}</td>
-                            <td>{pacientes[3].data}</td>
-                            <td>{pacientes[3].hora}</td>
-                            <td>{pacientes[3].convenio}</td>
-                            <td>{pacientes[3].status}</td>
-                            <td className="iniciar"> <Link to='/Paciente' className="link" >Iniciar Consulta</Link></td></tr>
-                        <tr>
-                            <td>{pacientes[4].agendou}</td>
-                            <td>{pacientes[4].paciente}</td>
-                            <td>{pacientes[4].data}</td>
-                            <td>{pacientes[4].hora}</td>
-                            <td>{pacientes[4].convenio}</td>
-                            <td>{pacientes[4].status}</td>
-                            <td className="iniciar"> <Link to='/Paciente' className="link" >Iniciar Consulta</Link></td></tr>
-                        <tr>
-                            <td>{pacientes[5].agendou}</td>
-                            <td>{pacientes[5].paciente}</td>
-                            <td>{pacientes[5].data}</td>
-                            <td>{pacientes[5].hora}</td>
-                            <td>{pacientes[5].convenio}</td>
-                            <td>{pacientes[5].status}</td>
-                            <td className="iniciar"> <Link to='/Paciente' className="link" >Iniciar Consulta</Link></td></tr>
+                        {agendas.map(agenda => {
+                            return(
+                                <tr key={agenda.id}>
+                                    <td>{agenda.secretariaName}</td>
+                                    <td>{agenda.pacienteName}</td>
+                                    <td>{FormatDateToShow(agenda.horario)}</td>
+                                    <td>{agenda.convenio}</td>
+                                    <td>{agenda.status}</td>
+                                    <td className="iniciar" onClick={ () => handleIniciar(agenda.id, agenda.pacienteId, agenda.pacienteName) }  > <Link to='/Paciente' className="link">Iniciar Consulta</Link></td> 
+                                </tr>    
+                            )
+                        })}
+                        
                     </tbody>
                 </table>
 

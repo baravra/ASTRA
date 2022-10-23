@@ -24,7 +24,8 @@ export default function CadastrarCliente() {
         try {
             await axios.post('http://localhost:44/usuarios', {
                 "name": data.user,
-                "password": data.senhanova
+                "password": data.senhanova,
+                "medicoId": data.codigo
             })
             alert('Cadastro realizado com sucesso')
 
@@ -50,7 +51,7 @@ export default function CadastrarCliente() {
 
                     <div className='dados-box-cadastro'>
                         <Key size={32} className='icone' />
-                        <input type="password" name="codigo" id="codigo" className='input' placeholder='Código' />
+                        <input type="text" name="codigo" id="codigo" className='input' placeholder='Código' />
                     </div>
 
                     <div className='dados-box-cadastro'>
