@@ -33,7 +33,7 @@ export default function Paciente() {
     }, [] )
 
     var paciente = {
-        lastconsulta: 12,
+        lastconsulta: "12/09/2022",
     }
 
     function formatDate(data: Date) {
@@ -48,7 +48,7 @@ export default function Paciente() {
             <div className="perfil">
                 <div className="perfil-infos">
                     <div>
-                        <img src="https://media.discordapp.net/attachments/818657895776387074/1033149971479924807/image_183.png" alt="" className="img-perfil" />
+                        <img src="user.png" alt="" className="img-perfil" />
                     </div>
                     <div className="dados">
                         <p className="nome"> {pacienteName}</p>
@@ -70,7 +70,7 @@ export default function Paciente() {
                         <div className="but-fun"> Visualizar Prescrição </div>
                         <div className="but-fun finalizar" > Finalizar Consulta </div>
                     </div>
-                    <div className="last-consul"> O último atendimento foi feito a {paciente.lastconsulta} dias! </div>
+                    <div className="last-consul"> A data do último atendimento foi {paciente.lastconsulta} </div>
                 </div>
             </div>
             <div className="prontuario">
@@ -173,7 +173,7 @@ export default function Paciente() {
 
 
             </div>
-            <div className="prontuario">
+            <div className="prontuario baixo">
                 <form action="">
                     <div className="full prim">
                         <div className="campo-box ">
@@ -289,10 +289,6 @@ export default function Paciente() {
                 </form>
 
 
-            </div>
-
-            <div className="questionario">
-                AAAAAAAAAAAAAA
             </div>
         </div>
     );

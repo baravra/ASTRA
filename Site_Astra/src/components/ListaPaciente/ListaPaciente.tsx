@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { MagnifyingGlass } from "phosphor-react";
 import './ListaPaciente.css'
 
+import ModalEmDesenvolvimento from "../Modal-Em-Desenvolvimento/Modal-Em-Desenvolvimento";
+
+
 export default function ListaPaciente() {
     var medico = "Fabrício Santos"
 
@@ -80,12 +83,28 @@ export default function ListaPaciente() {
 
     return (
         <div className="box-main-agenda">
+             <div className="modal fade" id="ExemploModalCentralizado" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered" role="document">
+                <div className="modal-content">
+
+                    <div className="modal-body corpo-modal">
+
+                        <img src="aviso.png" alt="" className='imagem-constru'/>
+                        FUNCIONALIDADE EM DESENVOLVIMENTO
+                    </div>
+                    <div className="modal-footer rodapemodal">
+                        <button type="button" className="btn btn-secondary botaook" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
             <div className="cabecalho">
                 <div className="Agendamentos">
                     <p className="agenda">Pacientes</p>
                 </div>
 
-                <div  className="busca">
+                <div className="busca">
                     <input type="text" name="busca" id="busca" />
                     <MagnifyingGlass size={30} />
                 </div>
@@ -105,38 +124,38 @@ export default function ListaPaciente() {
                         <tr>
                             <td>{pacientes[0].codigo}</td>
                             <td>{pacientes[0].paciente}</td>
-                            <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar"> Desenvolvimento</td>
+                            <td className="iniciar"> <Link to='/Paciente' className="link">Prontuário</Link></td>
+                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
                         </tr>
                         <tr>
                             <td>{pacientes[1].codigo}</td>
                             <td>{pacientes[1].paciente}</td>
                             <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar"> Desenvolvimento</td>
+                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
                         </tr>
                         <tr>
                             <td>{pacientes[2].codigo}</td>
                             <td>{pacientes[2].paciente}</td>
                             <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar"> Desenvolvimento</td>
+                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
                         </tr>
                         <tr>
                             <td>{pacientes[3].codigo}</td>
                             <td>{pacientes[3].paciente}</td>
                             <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar"> Desenvolvimento</td>
+                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
                         </tr>
                         <tr>
                             <td>{pacientes[4].codigo}</td>
                             <td>{pacientes[4].paciente}</td>
                             <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar"> Desenvolvimento</td>
+                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
                         </tr>
                         <tr>
                             <td>{pacientes[5].codigo}</td>
                             <td>{pacientes[5].paciente}</td>
                             <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar"> Desenvolvimento</td>
+                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
                         </tr>
                     </tbody>
                 </table>

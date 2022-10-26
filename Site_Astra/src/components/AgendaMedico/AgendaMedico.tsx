@@ -4,7 +4,10 @@ import './AgendaMedico.css'
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-interface Agenda{
+import ModalEmDesenvolvimento from "../Modal-Em-Desenvolvimento/Modal-Em-Desenvolvimento";
+
+
+interface Agenda {
     secretariaName: string;
     medicoName: string;
     pacienteId: number;
@@ -22,19 +25,19 @@ export default function AgendaMedico() {
         fetch(`http://localhost:44/agendamentos/${medico}`)
             .then(response => response.json())
             .then(data => setAgenda(data))
-    })    
+    })
 
-    function FormatDateToDatabase(data: Date){
+    function FormatDateToDatabase(data: Date) {
         // const dataFormatada = '' + data.getFullYear() + '-' + (data.getMonth() + 1) + '-' + data.getDate() + 'T' + data.getHours() + ':' + data.getMinutes() + ':' + data.getSeconds();
-        const dataFormatada = '' + data.getFullYear() + '-' + (data.getMonth() + 1) + '-' + data.getDate() + 'T00:00:00' ;
+        const dataFormatada = '' + data.getFullYear() + '-' + (data.getMonth() + 1) + '-' + data.getDate() + 'T00:00:00';
         return dataFormatada;
     }
-    function FormatDateToShow(data: Date){
+    function FormatDateToShow(data: Date) {
         var dataFormatada = new Date(data.toString())
         dataFormatada = (dataFormatada.getDate() + '/' + (dataFormatada.getMonth() + 1) + '/' + dataFormatada.getFullYear() + ' ' + dataFormatada.getHours() + ':' + dataFormatada.getMinutes()).toString();
         return dataFormatada
     }
-    async function  handleIniciar(id: number, pacienteId: number,pacienteName: string){
+    async function handleIniciar(id: number, pacienteId: number, pacienteName: string) {
 
         try {
             await axios.get(`http://localhost:44/iniciarAgendamento/${id}`, {})
@@ -42,28 +45,49 @@ export default function AgendaMedico() {
             localStorage.setItem("agendaId", id.toString())
             localStorage.setItem("pacienteId", pacienteId.toString())
             localStorage.setItem("pacienteName", pacienteName.toString())
-        
+
         } catch (error) {
             console.log(error)
             alert("Erro ao atualizar status do agendamento!")
         }
     }
 
+    const [modal, setModal] = useState(false);
+
+    function chamarModal() {
+        if (modal) {
+            setModal(false);
+        } else {
+            setModal(true);
+        }
+        console.log(modal)
+
+        if (modal) {
+            if (document.getElementById("teste")) {
+                var teste = document.getElementById("teste");
+                teste!.innerHTML = "OI";
+            }
+        }
+    }
+
+
     return (
         <div className="box-main-agenda">
+
+            <ModalEmDesenvolvimento />
+
             <p className="welcome">Bem vindo(a) <span className="nome-medico">{medico}</span> </p>
+
+            <p id="teste">{modal}</p>
             <div className="cabecalho">
                 <div className="Agendamentos">
                     <p className="agenda">Agendamentos do Dia</p>
                 </div>
 
-            
+
                 <div className="esquerda">
                     <div className="circulo">
-                        <Funnel size={32} color="#004B70"/>
-                    </div>
-                    <div className="circulo">
-                        <Calendar size={32} color="#004B70" />
+                        <Calendar size={32} color="#004B70" data-toggle="modal" data-target="#ExemploModalCentralizado" />
                     </div>
 
                 </div>
@@ -84,18 +108,18 @@ export default function AgendaMedico() {
                     </thead>
                     <tbody>
                         {agendas.map(agenda => {
-                            return(
+                            return (
                                 <tr key={agenda.id}>
                                     <td>{agenda.secretariaName}</td>
                                     <td>{agenda.pacienteName}</td>
                                     <td>{FormatDateToShow(agenda.horario)}</td>
                                     <td>{agenda.convenio}</td>
                                     <td>{agenda.status}</td>
-                                    <td className="iniciar" onClick={ () => handleIniciar(agenda.id, agenda.pacienteId, agenda.pacienteName) }  > <Link to='/Paciente' className="link">Iniciar Consulta</Link></td> 
-                                </tr>    
+                                    <td className="iniciar" onClick={() => handleIniciar(agenda.id, agenda.pacienteId, agenda.pacienteName)} > Iniciar Consulta</td>
+                                </tr>
                             )
                         })}
-                        
+
                     </tbody>
                 </table>
 
