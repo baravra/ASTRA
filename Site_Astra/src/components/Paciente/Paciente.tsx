@@ -257,7 +257,7 @@ export default function Paciente() {
                                     <p className="sexo-op"> Sim </p>
                                 </div>
                                 <div className="sexo">                                    
-                                    { prontuarios[0]?.alcool == "1" ? 
+                                    { prontuarios[0]?.alcool == "0" ? 
                                         <input type="checkbox" name="naobebida" id="naobebida"disabled checked  />
                                     : <input type="checkbox" name="naobebida" id="naobebida" disabled/>
                                     } 
