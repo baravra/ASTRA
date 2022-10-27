@@ -89,16 +89,17 @@ app.get("/agendamentos/:name", async(req, res) => {
     return res.json(agendamentos)
 })
 
-//iniciar consulta
-app.get("/iniciarAgendamento/:id", async(req, res) => {
+//alterar status consulta
+app.get("/iniciarAgendamento/:id/:status", async(req, res) => {
     const id = req.params.id
+    const status = req.params.status
 
     const agendamentos = await prisma.agendamentos.update({
         where: {
             id: parseInt(id)
         },
         data:{
-            status: "Em andamento"
+            status: status
         }
     })
 
@@ -118,5 +119,39 @@ app.get("/prontuario/:name",async (req, res) => {
     return res.json(prontuario)
 })
 
+// listar pacientes de um medico
+app.get("/listarPacientes/:id", async(req, res) => {
+    const id = req.params.id
+
+    const pacientes = await prisma.paciente.findMany({
+        orderBy: [
+            {
+                name: 'desc'
+            }
+        ],
+        where: {
+            medicoId: parseInt(id)
+        }
+    })
+
+    return res.json(pacientes)
+})
+
+//buscar paciente de um medico
+app.get("/buscarPaciente/:id/:name", async(req, res) => {
+    const id = req.params.id
+    const name = req.params.name
+
+    const pacientes = await prisma.paciente.findMany({
+        where: {
+            medicoId: parseInt(id),
+            name: {
+                contains: name
+            }
+        }
+    })
+
+    return res.json(pacientes)
+})
 
 app.listen(44)
