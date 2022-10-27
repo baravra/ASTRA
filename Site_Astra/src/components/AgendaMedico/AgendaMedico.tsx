@@ -20,6 +20,10 @@ interface Agenda {
 
 export default function AgendaMedico() {
     var medico = localStorage.getItem('medico')
+    if(!medico){
+        const win: Window = window;
+        win.location = "/Login-Medico";
+    }
     const [agendas, setAgenda] = useState<Agenda[]>([])
     useEffect(() => {
         fetch(`http://localhost:44/agendamentos/${medico}`)
@@ -37,36 +41,17 @@ export default function AgendaMedico() {
         dataFormatada = (dataFormatada.getDate() + '/' + (dataFormatada.getMonth() + 1) + '/' + dataFormatada.getFullYear() + ' ' + dataFormatada.getHours() + ':' + dataFormatada.getMinutes()).toString();
         return dataFormatada
     }
-    async function handleIniciar(id: number, pacienteId: number, pacienteName: string) {
+    async function handleStatus(id: number, situacao: string) {
 
+        if(situacao === 'return'){
+            return
+        }
         try {
-            await axios.get(`http://localhost:44/iniciarAgendamento/${id}`, {})
-
-            localStorage.setItem("agendaId", id.toString())
-            localStorage.setItem("pacienteId", pacienteId.toString())
-            localStorage.setItem("pacienteName", pacienteName.toString())
+            await axios.get(`http://localhost:44/iniciarAgendamento/${id}/${situacao}`, {})
 
         } catch (error) {
             console.log(error)
             alert("Erro ao atualizar status do agendamento!")
-        }
-    }
-
-    const [modal, setModal] = useState(false);
-
-    function chamarModal() {
-        if (modal) {
-            setModal(false);
-        } else {
-            setModal(true);
-        }
-        console.log(modal)
-
-        if (modal) {
-            if (document.getElementById("teste")) {
-                var teste = document.getElementById("teste");
-                teste!.innerHTML = "OI";
-            }
         }
     }
 
@@ -78,7 +63,7 @@ export default function AgendaMedico() {
 
             <p className="welcome">Bem vindo(a) <span className="nome-medico">{medico}</span> </p>
 
-            <p id="teste">{modal}</p>
+            {/* <p id="teste">{modal}</p> */}
             <div className="cabecalho">
                 <div className="Agendamentos">
                     <p className="agenda">Agendamentos do Dia</p>
@@ -108,6 +93,22 @@ export default function AgendaMedico() {
                     </thead>
                     <tbody>
                         {agendas.map(agenda => {
+                            var situacaoBanco = ""
+                            if(agenda.status == "Agendada"){
+                                situacaoBanco = "Iniciar Consulta"
+                                var situacao = "Em Andamento"
+                            }else if(agenda.status == "Finalizado"){
+                                situacaoBanco = "Consulta Finalizada"
+                                var situacao = "Finalizada"
+                            }else if(agenda.status.toLocaleUpperCase() == "EM ANDAMENTO") {
+                                situacaoBanco = "Finalizar Consulta"
+                                var situacao = "Finalizada"
+                            }else if (agenda.status == "Finalizada"){
+                                situacaoBanco = agenda.status
+                                var situacao = "return"
+                            }
+
+
                             return (
                                 <tr key={agenda.id}>
                                     <td>{agenda.secretariaName}</td>
@@ -115,7 +116,7 @@ export default function AgendaMedico() {
                                     <td>{FormatDateToShow(agenda.horario)}</td>
                                     <td>{agenda.convenio}</td>
                                     <td>{agenda.status}</td>
-                                    <td className="iniciar" onClick={() => handleIniciar(agenda.id, agenda.pacienteId, agenda.pacienteName)} > Iniciar Consulta</td>
+                                    <td className="iniciar"  id={agenda.id.toString()} onClick={() => handleStatus(agenda.id, situacao)} > {situacaoBanco} </td>
                                 </tr>
                             )
                         })}

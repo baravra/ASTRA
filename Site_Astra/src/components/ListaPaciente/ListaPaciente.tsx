@@ -3,82 +3,36 @@ import { MagnifyingGlass } from "phosphor-react";
 import './ListaPaciente.css'
 
 import ModalEmDesenvolvimento from "../Modal-Em-Desenvolvimento/Modal-Em-Desenvolvimento";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
+interface Paciente {
+    id: number;
+    name: string;
+}
 
 export default function ListaPaciente() {
-    var medico = "Fabrício Santos"
+    var medico = localStorage.getItem('medico')
+    var medicoId = localStorage.getItem('medicoId')
+    localStorage.removeItem('pacienteName')
 
-    var pacientes = [
-        {
-            id: '1',
-            agendou: "Carla Assis",
-            medico: "Thiago Freitas",
-            paciente: "Paulino Cândido Pinto",
-            data: "27/10/20220",
-            hora: "10:40",
-            convenio: "Particular",
-            status: "Finalizada",
-            codigo: "123456789"
-        },
-        {
-            id: "2",
-            agendou: "Carla Assis",
-            medico: "Thiago Freitas",
-            paciente: "Lara de Oliveira Santos",
-            data: "27/10/20220",
-            hora: "14:40",
-            convenio: "Particular",
-            status: "Confirmada",
-            codigo: "123456789"
-        },
-        {
-            id: "3",
-            agendou: "Mariana Alves",
-            medico: "Thiago Freitas",
-            paciente: "Camila Pedreira Montesquiel",
-            data: "27/10/20220",
-            hora: "15:40",
-            convenio: "Particular",
-            status: "Agendada",
-            codigo: "123456789"
-        },
-        {
-            id: "4",
-            agendou: "Luciene Pereira",
-            medico: "Thiago Freitas",
-            paciente: "Pedro Henquique da Silva",
-            data: "27/10/20220",
-            hora: "16:40",
-            convenio: "Particular",
-            status: "Confirmada",
-            codigo: "123456789"
-        },
-        {
-            id: "5",
-            agendou: "Luciene Pereira",
-            medico: "Thiago Freitas",
-            paciente: "Sofia Rocha Silva",
-            data: "27/10/20220",
-            hora: "17:40",
-            convenio: "Particular",
-            status: "Confirmada",
-            codigo: "123456789"
-        },
-        {
-            id: "6",
-            agendou: "Mariana Alves",
-            medico: "Thiago Freitas",
-            paciente: "Carlos Pinto Rocha",
-            data: "27/10/20220",
-            hora: "18:40",
-            convenio: "Particular",
-            status: "Confirmada",
-            codigo: "123456789"
+    const [pacientes, setPacientes] = useState<Paciente[]>([])
+    useEffect(() => {
+        axios(`http://localhost:44/listarPacientes/${medicoId}`).then(response => setPacientes(response.data))
+    }, [] )
+
+    async function handleFind(){
+        
+        try{
+            let input = (document.getElementById('busca') as HTMLInputElement)!.value
+            if(!input){
+                return
+            }
+            axios(`http://localhost:44/buscarPaciente/${medicoId}/${input}`).then(response => setPacientes(response.data))
+        }catch(error){
+            console.log(error)
+            alert("Erro ao encontrar paciente!")
         }
-    ];
-
-    function InicarConsulta(id: string) {
-        alert("Iniciando Consulta" + id)
     }
 
     return (
@@ -105,7 +59,7 @@ export default function ListaPaciente() {
                 </div>
 
                 <div className="busca">
-                    <input type="text" name="busca" id="busca" />
+                    <input type="text" name="busca" id="busca" onChange={handleFind} />
                     <MagnifyingGlass size={30} />
                 </div>
             </div>
@@ -121,42 +75,16 @@ export default function ListaPaciente() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>{pacientes[0].codigo}</td>
-                            <td>{pacientes[0].paciente}</td>
-                            <td className="iniciar"> <Link to='/Paciente' className="link">Prontuário</Link></td>
-                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
-                        </tr>
-                        <tr>
-                            <td>{pacientes[1].codigo}</td>
-                            <td>{pacientes[1].paciente}</td>
-                            <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
-                        </tr>
-                        <tr>
-                            <td>{pacientes[2].codigo}</td>
-                            <td>{pacientes[2].paciente}</td>
-                            <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
-                        </tr>
-                        <tr>
-                            <td>{pacientes[3].codigo}</td>
-                            <td>{pacientes[3].paciente}</td>
-                            <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
-                        </tr>
-                        <tr>
-                            <td>{pacientes[4].codigo}</td>
-                            <td>{pacientes[4].paciente}</td>
-                            <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
-                        </tr>
-                        <tr>
-                            <td>{pacientes[5].codigo}</td>
-                            <td>{pacientes[5].paciente}</td>
-                            <td className="iniciar"> Prontuário</td>
-                            <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
-                        </tr>
+                        {pacientes.map(paciente => {
+                            return (
+                                <tr key={paciente.id}> 
+                                    <td>{paciente.id}</td>
+                                    <td>{paciente.name}</td>
+                                    <td className="iniciar"> <Link to='/Paciente' className="link"  onClick={() => localStorage.setItem("pacienteName",paciente.name) }  >Prontuário</Link></td>
+                                    <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
 

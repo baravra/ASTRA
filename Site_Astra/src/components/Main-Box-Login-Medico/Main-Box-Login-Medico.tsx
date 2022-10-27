@@ -7,6 +7,8 @@ import { FormEvent } from "react";
 
 
 export default function MedicoLogin() {
+    localStorage.clear()
+
     async function loginMedico(event: FormEvent) {
         event.preventDefault()
         const formData = new FormData(event.target as HTMLFormElement)
@@ -23,9 +25,8 @@ export default function MedicoLogin() {
                 "senha": data.senha
             })
 
-            console.log(response.data[0].id)
-
-           localStorage.setItem('medico', (data.user).toString())
+            localStorage.setItem('medico', (data.user).toString())
+            localStorage.setItem('medicoId', (response.data[0].id).toString())
 
             const win: Window = window;
             win.location = "/Home-Medico";
@@ -64,8 +65,7 @@ export default function MedicoLogin() {
                         </div>
                     </div>
                     <div className="box-button">
-                        {/* <Link to='/Inicio' className='acessar' id="acessar"> Acessar </Link> */}
-                        <button className='acessar' id="acessar">  <Link to='/Home-Medico' className="link-acessar"> Acessar </Link> </button>
+                        <button className='acessar' id="acessar">  Acessar  </button>
                     </div>
                 </form>
                 
