@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import ModalEmDesenvolvimento from "../Modal-Em-Desenvolvimento/Modal-Em-Desenvolvimento";
+import ModalIniciaConsulta from "../Modal-Iniciar-Consulta/Modal-Iniciar-Consulta"
 
 
 interface Agenda {
@@ -20,7 +21,7 @@ interface Agenda {
 
 export default function AgendaMedico() {
     var medico = localStorage.getItem('medico')
-    if(!medico){
+    if (!medico) {
         const win: Window = window;
         win.location = "/Login-Medico";
     }
@@ -43,7 +44,8 @@ export default function AgendaMedico() {
     }
     async function handleStatus(id: number, situacao: string) {
 
-        if(situacao === 'return'){
+
+        if (situacao === 'return') {
             return
         }
         try {
@@ -55,6 +57,10 @@ export default function AgendaMedico() {
         }
     }
 
+    function abrirmodal(){
+        document.getElementById("modal-desenv")!.style.display = "block"
+    }
+
 
     return (
         <div className="box-main-agenda">
@@ -62,8 +68,7 @@ export default function AgendaMedico() {
             <ModalEmDesenvolvimento />
 
             <p className="welcome">Bem vindo(a) <span className="nome-medico">{medico}</span> </p>
-
-            {/* <p id="teste">{modal}</p> */}
+        
             <div className="cabecalho">
                 <div className="Agendamentos">
                     <p className="agenda">Agendamentos do Dia</p>
@@ -72,7 +77,7 @@ export default function AgendaMedico() {
 
                 <div className="esquerda">
                     <div className="circulo">
-                        <Calendar size={32} color="#004B70" data-toggle="modal" data-target="#ExemploModalCentralizado" />
+                        <Calendar size={32} color="#004B70" onClick={abrirmodal}/>
                     </div>
 
                 </div>
@@ -94,19 +99,24 @@ export default function AgendaMedico() {
                     <tbody>
                         {agendas.map(agenda => {
                             var situacaoBanco = ""
-                            if(agenda.status == "Agendada"){
+                            if (agenda.status == "Agendada") {
                                 situacaoBanco = "Iniciar Consulta"
                                 var situacao = "Em Andamento"
-                            }else if(agenda.status == "Finalizado"){
+                                //document.getElementById("statusagendamento")!.style.color = "#379206"
+                            } else if (agenda.status == "Finalizado") {
                                 situacaoBanco = "Consulta Finalizada"
                                 var situacao = "Finalizada"
-                            }else if(agenda.status.toLocaleUpperCase() == "EM ANDAMENTO") {
+                            } else if (agenda.status.toLocaleUpperCase() == "EM ANDAMENTO") {
                                 situacaoBanco = "Finalizar Consulta"
                                 var situacao = "Finalizada"
-                            }else if (agenda.status == "Finalizada"){
+                                //document.getElementById("statusagendamento")!.style.color = "#EAA001"
+                            } else if (agenda.status == "Finalizada") {
                                 situacaoBanco = agenda.status
+                                //document.getElementById("statusagendamento")!.style.color = "#EA2F01"
                                 var situacao = "return"
                             }
+
+                           
 
 
                             return (
@@ -115,8 +125,8 @@ export default function AgendaMedico() {
                                     <td>{agenda.pacienteName}</td>
                                     <td>{FormatDateToShow(agenda.horario)}</td>
                                     <td>{agenda.convenio}</td>
-                                    <td>{agenda.status}</td>
-                                    <td className="iniciar"  id={agenda.id.toString()} onClick={() => handleStatus(agenda.id, situacao)} > {situacaoBanco} </td>
+                                    <td id="statusagendamento">{agenda.status}</td>
+                                    <td className="iniciar" id={agenda.id.toString()} onClick={() => handleStatus(agenda.id, situacao)}> {situacaoBanco}  </td>
                                 </tr>
                             )
                         })}

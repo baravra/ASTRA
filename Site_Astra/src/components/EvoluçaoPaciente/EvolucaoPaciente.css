@@ -1,0 +1,62 @@
+.main-box-medic-profile{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-profile{
+    width: 150px;
+    border-radius: 50%
+}
+
+
+.edit-box{
+    background-color: #334488; 
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top:0;
+    margin-top: 230px;
+    margin-left: 110px;
+    cursor: pointer;
+}
+
+.campo-input-medic{
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    width: 100%;
+    background-color: white;
+    outline: 0;
+    border-bottom: 2px lightgray solid;
+    height: 40px;
+
+}
+
+.campo-box-input-evol{
+    width: 60%;
+    margin-bottom: 40px
+}
+
+.grafico{
+    width: 80%;
+    margin-top: 30px
+}
+
+.label{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: gray;
+    margin-bottom: 0px;
+    margin-top: 20px
+}

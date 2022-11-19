@@ -1,13 +1,10 @@
-
-.box{
+.box-apresentation{
     width: 100%;
-    height: 100vh;
+    height: 110vh;
     font-family: 'Inter', sans-serif;
-    background-color: #DEF4F4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    background-image: url('./coverhome.png');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .image-construction{
@@ -24,4 +21,277 @@ h1{
     text-decoration: none;
     color: black;
     padding: 10px 30px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 60px;
+    padding-top: 40px
+}
+
+.options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%
+}
+
+.logoimage{
+    width: 200px;
+}
+
+.opt{
+    text-decoration: none;
+    color: #004B70;
+    font-weight: 600;
+    margin: 0px 10px
+}
+
+.opt:hover{
+    text-decoration: none;
+    color: #0BCAD9
+}
+
+.box-opt{
+    background-color: #007EBD;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+}
+
+.white{
+    color: white
+}
+
+.white:hover{
+    color: #004B70;
+}
+
+.text-apresentation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column ;
+    margin-top: 15%;
+    margin-left: 45%
+}
+
+.line1{
+    background-color: #004B70;
+    color: white;
+    padding: 10px 20px ;
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: 600
+}
+
+.line2{
+    background-color: #0BCAD9;
+    color: white;
+    padding: 10px 20px ;
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 10px
+}
+
+.ofPaciente{
+    background-color: #D1FCFF;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: -40px;
+
+    padding-top: 100px;
+    padding-bottom: 60px
+}
+
+.line{
+    background-color: #004B70;
+    color: white;
+    padding: 10px 20px ;
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    width: 40%;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column ;
+}
+
+.lin1{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-func{
+    width: 30%;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column ;
+}
+
+.box-func-desc{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin-top: -30px
+}
+
+.desc-funct{
+    background-color: white;
+    color: #004B70;
+    width: 80%;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center
+}
+
+.links{
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ofMedico{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: -40px;
+    width: 90%;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    border-bottom: 2px lightgray solid;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mar{
+    margin: 600px
+}
+
+.medic{
+    background-color: #0BCAD9;
+    width: 50%;
+}
+
+.desc-funct-medic{
+    background-color: #004B70;
+    color: white;
+    width: 90%;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center
+}
+
+
+.titulosobre{
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #66CBD3;
+    margin-top: 60px;
+    text-align: center
+}
+
+.equipdesc{
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #004B70;
+    margin-top: 60px;
+    text-align: justify;
+    margin: 50px 150px
+}
+
+
+
+.fotosEquipe{
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.boxFoto{
+    background-color: red;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    width: 250px;
+    height: 250px;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+}
+
+.boxFoto:hover{
+    transition: 1s;
+    width: 300px;
+    height: 300px;
+}
+
+.Camilli{
+    background-image: url('./Camilli.png');
+}
+
+.Barbara{
+    background-image: url('./barb.png');
+}
+
+.Lara{
+    background-image: url('./Lara.png');
+}
+
+.nomeEquipe{
+    font-family: 'Inter', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    color: white;
+    margin: 0
+}
+
+.cargoEquipe{
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: gray;
+
+}
+
+.faq{
+    width: 90%;
+    background-color: #D1FCFF;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 90px
 }

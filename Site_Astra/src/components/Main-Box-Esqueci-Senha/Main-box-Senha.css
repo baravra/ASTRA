@@ -7,6 +7,7 @@
     transform: translate(-50%,-50%);
     height: 75%;
     background-color: white;
+    border-radius: 90px;
 }
 
 .logo{
@@ -23,6 +24,8 @@
     background-image: url('./foto-recpsenha.png');
     background-size: cover;
     background-repeat: no-repeat;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .login-box{
@@ -31,6 +34,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-radius: 20px;
 }
 
 
