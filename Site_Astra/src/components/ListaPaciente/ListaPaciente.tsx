@@ -35,6 +35,10 @@ export default function ListaPaciente() {
         }
     }
 
+    function abrirmodal(){
+        document.getElementById("modal-desenv")!.style.display = "block"
+    }
+
     return (
         <div className="box-main-agenda">
              <div className="modal fade" id="ExemploModalCentralizado" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
@@ -81,7 +85,7 @@ export default function ListaPaciente() {
                                     <td>{paciente.id}</td>
                                     <td>{paciente.name}</td>
                                     <td className="iniciar"> <Link to='/Paciente' className="link"  onClick={() => localStorage.setItem("pacienteName",paciente.name) }  >Prontuário</Link></td>
-                                    <td className="iniciar" data-toggle="modal" data-target="#ExemploModalCentralizado"> Desenvolvimento</td>
+                                    <td className="iniciar">  <Link to='/Evolucao-Paciente' className="link" >Desenvolvimento</Link> </td>
                                 </tr>
                             )
                         })}

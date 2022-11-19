@@ -16,7 +16,8 @@
     "react-input-mask": "^2.0.4",
     "react-redirect": "^1.0.0",
     "react-router": "^6.4.2",
-    "react-router-dom": "^6.4.1"
+    "react-router-dom": "^6.4.1",
+    "react-tabindex-content": "^1.0.5"
   },
   "devDependencies": {
     "@types/jest": "^29.0.3",

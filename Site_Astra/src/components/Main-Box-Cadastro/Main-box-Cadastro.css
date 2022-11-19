@@ -7,6 +7,7 @@
     transform: translate(-50%,-50%);
     height: 75%;
     background-color: white;
+    border-radius: 20px;
 }
 
 .logo{
@@ -23,6 +24,8 @@
     background-image: url('./foto-cadastro.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .login-box{

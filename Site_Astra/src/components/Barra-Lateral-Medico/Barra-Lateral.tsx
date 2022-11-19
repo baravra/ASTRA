@@ -8,6 +8,9 @@ import ModalEmDesenvolvimento from "../Modal-Em-Desenvolvimento/Modal-Em-Desenvo
 
 export default function BarraLateral() {
 
+    function abrirmodal(){
+        document.getElementById("modal-desenv")!.style.display = "block"
+    }
 
     return (
         <div className="box-barra">
@@ -18,11 +21,12 @@ export default function BarraLateral() {
                 <Link to='/Home-Medico' > <Calendar size={52} color="white" className="func" /></Link>
                 <Link to='/Lista-Pacientes'> <IdentificationCard size={52} color="white" className="func" /></Link>
 
-                <ChartLine size={52} color="white" className="func" data-toggle="modal" data-target="#ExemploModalCentralizado" />
+                <ChartLine size={52} color="white" className="func" onClick={abrirmodal} />
             </div>
             <div className="opcoes">
-                <Chats size={42} color="white" className="func" data-toggle="modal" data-target="#ExemploModalCentralizado" />
-                <UserCircle size={42} color="white" className="func" data-toggle="modal" data-target="#ExemploModalCentralizado" />
+                <a href="https://wa.me/5531981000577"><Chats size={42} color="white" className="func" /></a>
+                <Link to='/Perfil-Medico'> <UserCircle size={42} color="white" className="func"/></Link>
+                
             </div>
         </div>
     )

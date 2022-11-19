@@ -11,6 +11,8 @@ import LoginMedico from "../screens/LoginMedico";
 import HomeMedico from  "../screens/HomeMedico"
 import ListaPacientes from  "../screens/ListaPacientes"
 import PacienteDetalhe from "../screens/PacienteDetalhe"
+import PerfilMedico from "../screens/PerfilMedico";
+import EvolucaoDoPaciente from "../screens/EvoluçaoPaciente";
 
 function Rotas() {
     return (
@@ -25,6 +27,8 @@ function Rotas() {
                 <Route path="/Home-Medico" element={<HomeMedico/>}/>
                 <Route path="/Lista-Pacientes" element={<ListaPacientes/>}/>
                 <Route path="/Paciente" element={<PacienteDetalhe/>}/>
+                <Route path="/Perfil-Medico" element={<PerfilMedico/>}/>
+                <Route path="/Evolucao-Paciente" element={<EvolucaoDoPaciente/>}/>
             </Routes>
         </BrowserRouter>
 
