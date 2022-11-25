@@ -1,15 +1,12 @@
-import { Link } from "react-router-dom";
 import {
   Calendar,
-  IdentificationCard,
-  ChartLine,
-  BellRinging,
   Chats,
+  IdentificationCard,
   UserCircle,
 } from "phosphor-react";
+import { Link } from "react-router-dom";
 import "./Barra-Lateral.css";
 
-import icone from "./icone.png";
 import ModalEmDesenvolvimento from "../Modal-Em-Desenvolvimento/Modal-Em-Desenvolvimento";
 
 export default function BarraLateral() {
