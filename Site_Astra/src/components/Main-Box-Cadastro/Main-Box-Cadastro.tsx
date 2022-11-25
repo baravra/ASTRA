@@ -43,7 +43,7 @@ export default function CadastrarCliente() {
                     <img src="./logo.png" alt="Logo" className="logo" />
                 </div>
                 <h1 className='singin-text'> Cadastrar</h1>
-                <form onSubmit={cadastrarCliente} >
+                <form onSubmit={cadastrarCliente} className="formsSenha">
                     <div className='dados-box-cadastro'>
                         <User size={32} className='icone' />
                         <input type="text" name="user" id="user" className='input' placeholder='Usuário ou CPF ' />

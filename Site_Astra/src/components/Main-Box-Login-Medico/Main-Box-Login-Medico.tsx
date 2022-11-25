@@ -44,7 +44,7 @@ export default function MedicoLogin() {
                     <img src="./logo.png" alt="Logo" className="logo" />
                 </div>
                 <h1 className='singin-text'> Entrar</h1>
-                <form onSubmit={loginMedico}>
+                <form onSubmit={loginMedico} className="formsMedic">
                     <div className='dados-box'>
                         <User size={32} className='icone' />
                         <input type="text" name="user" id="user" className='input' placeholder='Usuário ou CPF ' />

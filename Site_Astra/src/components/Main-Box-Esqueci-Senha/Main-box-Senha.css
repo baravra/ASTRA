@@ -186,3 +186,7 @@ a{
     }
 
   }
+
+.formsSenha{
+    flex-direction: column  
+}

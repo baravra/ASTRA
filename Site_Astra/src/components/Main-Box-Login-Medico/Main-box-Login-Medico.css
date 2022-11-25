@@ -159,3 +159,6 @@ span{
     }
   }
 
+.formsMedic{
+    flex-direction: column  
+}

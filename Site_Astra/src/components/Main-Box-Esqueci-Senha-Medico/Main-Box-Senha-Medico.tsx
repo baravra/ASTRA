@@ -46,7 +46,7 @@ export default function EsqueciSenha() {
                     <img src="./logo.png" alt="Logo" className="logo" />
                 </div>
                 <h1 className='singin-text'> Redefinir Senha</h1>
-                <form onSubmit={esqueciSenha}>
+                <form onSubmit={esqueciSenha} className="formsMedic">
                     <div className='dados-box-senha'>
                         <User size={32} className='icone' />
                         <input type="text" name="user" id="user" className='input' placeholder='Usuário ou CPF ' />
