@@ -182,3 +182,7 @@ a{
     }
 
   }
+
+  .formsMedic{
+    flex-direction: column  
+}
